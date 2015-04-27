@@ -22,7 +22,7 @@
 				overflow:hidden;
 			}
 		.jumbotron {
-			background-image:url("2.jpg");
+			background-image:url("images/2.jpg");
 			width:100%;
 			min-height:100px;
 		}
@@ -68,7 +68,7 @@
   <div class="container-fluid">
    
     <div class="navbar-header">
-        <a href="./index.html"><img src="img1.png" style="height: 60px; margin-top: 10px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="./index.html"><img src="images/img1.png" style="height: 60px; margin-top: 10px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -239,7 +239,7 @@
 			<p>Get Ready!</p>      
 			<a href="#" class="btn btn-info btn-lg" id="button"data-toggle="modal" data-target="#myModal">Launch</a>
 			<audio id="player" preload>
-								<source src="music.wav" type="audio/wav">
+								<source src="music/music.wav" type="audio/wav">
 									Your browser does not support the audio element.
 								</audio>
 			</center>
@@ -350,9 +350,9 @@
   								<div class="modal-body">
 									<div id="sphere-area">
 									<center>
-									<img src="ftee.jpg" alt="ball" id="ftee" />
-									<img src="mtee.jpg" id="mtee" alt="" />
-									<img src="dress.jpg" id="dress" alt="" />
+									<img src="images/ftee.jpg" alt="ball" id="ftee" />
+									<img src="images/mtee.jpg" id="mtee" alt="" />
+									<img src="images/dress.jpg" id="dress" alt="" />
 									</center>
 									</div>
   								</div>
