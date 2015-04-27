@@ -120,116 +120,143 @@
 		<script src="js/libs/stats.min.js"></script>
 		<script>
 			
-				var container, stats;
 
-			var camera, scene, renderer;
+		var container, stats;
 
-			var geometry, group;
+	var camera, scene, renderer;
 
-			var mouseX = 0, mouseY = 0;
+	var geometry, group;
 
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+	var mouseX = 0, mouseY = 0;
 
-			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+	var windowHalfX = window.innerWidth / 2;
+	var windowHalfY = window.innerHeight / 2;
 
-			init();
-			animate();
+	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
-			function init() {
+	init();
+	animate();
 
-				container = document.createElement( 'div' );
-				document.body.appendChild( container );
+	function init() {
 
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.z = 500;
+		container = document.createElement( 'div' );
+		document.body.appendChild( container );
 
-				scene = new THREE.Scene();
+		camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.z = 500;
 
-				var geometry = new THREE.BoxGeometry( 100, 100, 100 );
-				var material = new THREE.MeshNormalMaterial( { overdraw: 0.5 } );
+		scene = new THREE.Scene();
+		
+		
+		
+		 var material = new THREE.MeshLambertMaterial({
+			
+			map: THREE.ImageUtils.loadTexture('download.jpg')
+		});
+		
+		var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-				group = new THREE.Group();
+		group = new THREE.Group();
 
-				for ( var i = 0; i < 200; i ++ ) {
+		for ( var i = 0; i < 200; i ++ ) {
 
-					var mesh = new THREE.Mesh( geometry, material );
-					mesh.position.x = Math.random() * 2000 - 1000;
-					mesh.position.y = Math.random() * 2000 - 1000;
-					mesh.position.z = Math.random() * 2000 - 1000;
-					mesh.rotation.x = Math.random() * 2 * Math.PI;
-					mesh.rotation.y = Math.random() * 2 * Math.PI;
-					mesh.matrixAutoUpdate = false;
-					mesh.updateMatrix();
-					group.add( mesh );
+			var mesh = new THREE.Mesh( geometry, material );
+			mesh.position.x = Math.random() * 2000 - 1000;
+			mesh.position.y = Math.random() * 2000 - 1000;
+			mesh.position.z = Math.random() * 2000 - 1000;
+			mesh.rotation.x = Math.random() * 2 * Math.PI;
+			mesh.rotation.y = Math.random() * 2 * Math.PI;
+			mesh.matrixAutoUpdate = false;
+			mesh.updateMatrix();
+			group.add( mesh );
 
-				}
-				
+		}
+		
 
-				scene.add( group );
+		scene.add( group );
 
-				renderer = new THREE.CanvasRenderer();
-				renderer.setClearColor( 0xffffff );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
+		renderer = new THREE.CanvasRenderer();
+		renderer.setClearColor( 0xff0000 );
+		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		container.appendChild( renderer.domElement );
 
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				stats.domElement.style.zIndex = 100;
-				container.appendChild( stats.domElement );
+		stats = new Stats();
+		stats.domElement.style.position = 'absolute';
+		stats.domElement.style.top = '0px';
+		stats.domElement.style.zIndex = 100;
+		container.appendChild( stats.domElement );
 
-				//
+		//
 
-				window.addEventListener( 'resize', onWindowResize, false );
+		window.addEventListener( 'resize', onWindowResize, false );
 
-			}
+	}
 
-			function onWindowResize() {
+	function onWindowResize() {
 
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
+		windowHalfX = window.innerWidth / 2;
+		windowHalfY = window.innerHeight / 2;
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( window.innerWidth, window.innerHeight );
 
-			}
+	}
 
-			function onDocumentMouseMove(event) {
+	function onDocumentMouseMove(event) {
 
-				mouseX = ( event.clientX - windowHalfX ) * 10;
-				mouseY = ( event.clientY - windowHalfY ) * 10;
+		mouseX = ( event.clientX - windowHalfX ) * 10;
+		mouseY = ( event.clientY - windowHalfY ) * 10;
 
-			}
+	}
 
-			//
+	//
 
-			function animate() {
+	function animate() {
 
-				requestAnimationFrame( animate );
+		requestAnimationFrame( animate );
 
-				render();
-				stats.update();
+		render();
+		stats.update();
 
-			}
+	}
+	 // Load the background texture
+var texture = THREE.ImageUtils.loadTexture( 'wallpaper.jpg' );
+var backgroundMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(2, 2, 0),
+    new THREE.MeshBasicMaterial({
+        map: texture
+    }));
 
-			function render() {
+backgroundMesh .material.depthTest = false;
+backgroundMesh .material.depthWrite = false;
 
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-				camera.lookAt( scene.position );
+// Create your background scene
+var backgroundScene = new THREE.Scene();
+var backgroundCamera = new THREE.Camera();
+backgroundScene .add(backgroundCamera );
+backgroundScene .add(backgroundMesh );
 
-				var currentSeconds = Date.now();
-				group.rotation.x = Math.sin( currentSeconds * 0.0007 ) * 0.5;
-				group.rotation.y = Math.sin( currentSeconds * 0.0003 ) * 0.5;
-				group.rotation.z = Math.sin( currentSeconds * 0.0002 ) * 0.5;
+	function render() {
 
-				renderer.render( scene, camera );
+		camera.position.x += ( mouseX - camera.position.x ) * .05;
+		camera.position.y += ( - mouseY - camera.position.y ) * .05;
+		camera.lookAt( scene.position );
 
-			}
+		var currentSeconds = Date.now();
+		group.rotation.x = Math.sin( currentSeconds * 0.0007 ) * 0.5;
+		group.rotation.y = Math.sin( currentSeconds * 0.0003 ) * 0.5;
+		group.rotation.z = Math.sin( currentSeconds * 0.0002 ) * 0.5;
+
+	
+		renderer.autoClear = false;
+    renderer.clear();
+    renderer.render(backgroundScene , backgroundCamera );
+    renderer.render(scene, camera);
+
+	}
 
 		</script>
 		
