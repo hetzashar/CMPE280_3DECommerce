@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		  <title>Bootstrap Case</title>
@@ -22,7 +19,7 @@
 				overflow:hidden;
 			}
 		.jumbotron {
-			background-image:url("images/2.jpg");
+			background-image:url("2.jpg");
 			width:100%;
 			min-height:100px;
 		}
@@ -64,41 +61,34 @@
 
 
 		<nav class="navbar navbar-inverse navbar-static-top">
-		
+	
+  	
   <div class="container-fluid">
+  
    
     <div class="navbar-header">
-        <a href="./index.html"><img src="images/img1.png" style="height: 60px; margin-top: 10px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="./index.html"><img src="logo.jpg" style="height: 60px; margin-top: 10px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     </div>
 
 		
       <ul class="nav navbar-nav nav-tab">
         <li class="active"><a href="#">Home</a></li>
-		<li class="active"><a href="#">About</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Male <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-          </ul>
-        </li>
-         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Female <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-          </ul>
-        </li>
-        
+		<li class="active"><a href="#">Male</a></li>
+		<li class="active"><a href="#">Female</a></li>
+		<li class="active"><a href="#">About Us</a></li>
+       
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		<li><a class="btn" href="">
+			 <img src="addtocart.png" alt="#">
+		</a></li>
       </ul>
 	 
     </div>
+	
 	
   
 </nav>
@@ -120,143 +110,142 @@
 		<script src="js/libs/stats.min.js"></script>
 		<script>
 			
+				var container, stats;
 
-		var container, stats;
+			var camera, scene, renderer;
 
-	var camera, scene, renderer;
+			var geometry, group;
 
-	var geometry, group;
+			var mouseX = 0, mouseY = 0;
 
-	var mouseX = 0, mouseY = 0;
+			var windowHalfX = window.innerWidth / 2;
+			var windowHalfY = window.innerHeight / 2;
 
-	var windowHalfX = window.innerWidth / 2;
-	var windowHalfY = window.innerHeight / 2;
+			document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			init();
+			animate();
 
-	init();
-	animate();
+			function init() {
 
-	function init() {
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
 
-		container = document.createElement( 'div' );
-		document.body.appendChild( container );
+				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.z = 500;
 
-		camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
-		camera.position.z = 500;
+				scene = new THREE.Scene();
+				
+				
+				
+				 var material = new THREE.MeshLambertMaterial({
+					
+					map: THREE.ImageUtils.loadTexture('download1.jpg')
+				});
+				
+				var geometry = new THREE.BoxGeometry( 100, 100, 100 );
 
-		scene = new THREE.Scene();
-		
-		
-		
-		 var material = new THREE.MeshLambertMaterial({
+				group = new THREE.Group();
+
+				for ( var i = 0; i < 200; i ++ ) {
+
+					var mesh = new THREE.Mesh( geometry, material );
+					mesh.position.x = Math.random() * 2000 - 1000;
+					mesh.position.y = Math.random() * 2000 - 1000;
+					mesh.position.z = Math.random() * 2000 - 1000;
+					mesh.rotation.x = Math.random() * 2 * Math.PI;
+					mesh.rotation.y = Math.random() * 2 * Math.PI;
+					mesh.matrixAutoUpdate = false;
+					mesh.updateMatrix();
+					group.add( mesh );
+
+				}
+				
+
+				scene.add( group );
+
+				renderer = new THREE.CanvasRenderer();
+				renderer.setClearColor( 0xff0000 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				stats.domElement.style.zIndex = 100;
+				container.appendChild( stats.domElement );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onDocumentMouseMove(event) {
+
+				mouseX = ( event.clientX - windowHalfX ) * 10;
+				mouseY = ( event.clientY - windowHalfY ) * 10;
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+				stats.update();
+
+			}
+			 // Load the background texture
+        var texture = THREE.ImageUtils.loadTexture( 'wallpaper.jpg' );
+        var backgroundMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(2, 2, 0),
+            new THREE.MeshBasicMaterial({
+                map: texture
+            }));
+
+        backgroundMesh .material.depthTest = false;
+        backgroundMesh .material.depthWrite = false;
+
+        // Create your background scene
+        var backgroundScene = new THREE.Scene();
+        var backgroundCamera = new THREE.Camera();
+        backgroundScene .add(backgroundCamera );
+        backgroundScene .add(backgroundMesh );
+
+			function render() {
+
+				camera.position.x += ( mouseX - camera.position.x ) * .05;
+				camera.position.y += ( - mouseY - camera.position.y ) * .05;
+				camera.lookAt( scene.position );
+
+				var currentSeconds = Date.now();
+				group.rotation.x = Math.sin( currentSeconds * 0.0007 ) * 0.5;
+				group.rotation.y = Math.sin( currentSeconds * 0.0003 ) * 0.5;
+				group.rotation.z = Math.sin( currentSeconds * 0.0002 ) * 0.5;
+
 			
-			map: THREE.ImageUtils.loadTexture('images/download.jpg')
-		});
-		
-		var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+				renderer.autoClear = false;
+            renderer.clear();
+            renderer.render(backgroundScene , backgroundCamera );
+            renderer.render(scene, camera);
 
-		group = new THREE.Group();
-
-		for ( var i = 0; i < 200; i ++ ) {
-
-			var mesh = new THREE.Mesh( geometry, material );
-			mesh.position.x = Math.random() * 2000 - 1000;
-			mesh.position.y = Math.random() * 2000 - 1000;
-			mesh.position.z = Math.random() * 2000 - 1000;
-			mesh.rotation.x = Math.random() * 2 * Math.PI;
-			mesh.rotation.y = Math.random() * 2 * Math.PI;
-			mesh.matrixAutoUpdate = false;
-			mesh.updateMatrix();
-			group.add( mesh );
-
-		}
-		
-
-		scene.add( group );
-
-		renderer = new THREE.CanvasRenderer();
-		renderer.setClearColor( 0xff0000 );
-		renderer.setPixelRatio( window.devicePixelRatio );
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		container.appendChild( renderer.domElement );
-
-		stats = new Stats();
-		stats.domElement.style.position = 'absolute';
-		stats.domElement.style.top = '0px';
-		stats.domElement.style.zIndex = 100;
-		container.appendChild( stats.domElement );
-
-		//
-
-		window.addEventListener( 'resize', onWindowResize, false );
-
-	}
-
-	function onWindowResize() {
-
-		windowHalfX = window.innerWidth / 2;
-		windowHalfY = window.innerHeight / 2;
-
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-
-		renderer.setSize( window.innerWidth, window.innerHeight );
-
-	}
-
-	function onDocumentMouseMove(event) {
-
-		mouseX = ( event.clientX - windowHalfX ) * 10;
-		mouseY = ( event.clientY - windowHalfY ) * 10;
-
-	}
-
-	//
-
-	function animate() {
-
-		requestAnimationFrame( animate );
-
-		render();
-		stats.update();
-
-	}
-	 // Load the background texture
-var texture = THREE.ImageUtils.loadTexture( 'images/wallpaper.jpg' );
-var backgroundMesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(2, 2, 0),
-    new THREE.MeshBasicMaterial({
-        map: texture
-    }));
-
-backgroundMesh .material.depthTest = false;
-backgroundMesh .material.depthWrite = false;
-
-// Create your background scene
-var backgroundScene = new THREE.Scene();
-var backgroundCamera = new THREE.Camera();
-backgroundScene .add(backgroundCamera );
-backgroundScene .add(backgroundMesh );
-
-	function render() {
-
-		camera.position.x += ( mouseX - camera.position.x ) * .05;
-		camera.position.y += ( - mouseY - camera.position.y ) * .05;
-		camera.lookAt( scene.position );
-
-		var currentSeconds = Date.now();
-		group.rotation.x = Math.sin( currentSeconds * 0.0007 ) * 0.5;
-		group.rotation.y = Math.sin( currentSeconds * 0.0003 ) * 0.5;
-		group.rotation.z = Math.sin( currentSeconds * 0.0002 ) * 0.5;
-
-	
-		renderer.autoClear = false;
-    renderer.clear();
-    renderer.render(backgroundScene , backgroundCamera );
-    renderer.render(scene, camera);
-
-	}
+			}
 
 		</script>
 		
@@ -266,7 +255,7 @@ backgroundScene .add(backgroundMesh );
 			<p>Get Ready!</p>      
 			<a href="#" class="btn btn-info btn-lg" id="button"data-toggle="modal" data-target="#myModal">Launch</a>
 			<audio id="player" preload>
-								<source src="music/music.wav" type="audio/wav">
+								<source src="music.wav" type="audio/wav">
 									Your browser does not support the audio element.
 								</audio>
 			</center>
@@ -377,9 +366,9 @@ backgroundScene .add(backgroundMesh );
   								<div class="modal-body">
 									<div id="sphere-area">
 									<center>
-									<img src="images/ftee.jpg" alt="ball" id="ftee" />
-									<img src="images/mtee.jpg" id="mtee" alt="" />
-									<img src="images/dress.jpg" id="dress" alt="" />
+									<img src="ftee.jpg" alt="ball" id="ftee" />
+									<img src="mtee.jpg" id="mtee" alt="" />
+									<img src="dress.jpg" id="dress" alt="" />
 									</center>
 									</div>
   								</div>
