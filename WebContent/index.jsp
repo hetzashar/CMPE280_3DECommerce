@@ -12,17 +12,13 @@
 	
 		<style>	
 		body {
-				background:black;
+				background: black;
 				padding:0;
 				margin:0;
 				font-weight: bold;
 				overflow:hidden;
 			}
-		.jumbotron {
-			background-image:url("2.jpg");
-			width:100%;
-			min-height:100px;
-		}
+		
 		#sphere-area { height: 350px; position: relative; width: 100%; }
 		#sphere-area img { width: 500px; height: 500px; position: absolute; top: 50px; left: 250px; }
 		#sphere-area #mtee { opacity: 0; }
@@ -67,7 +63,7 @@
   
    
     <div class="navbar-header">
-        <a href="./index.html"><img src="logo.jpg" style="height: 60px; margin-top: 10px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="./index.html"><img src="images/logo.jpg" style="height: 30px; margin-top: 20px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     </div>
 
@@ -83,7 +79,7 @@
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		<li><a class="btn" href="">
-			 <img src="addtocart.png" alt="#">
+			 <img src="images/addtocart.png" alt="#">
 		</a></li>
       </ul>
 	 
@@ -94,14 +90,7 @@
 </nav>
   <br>
   
-
- 
-  
-
-
-	
-  
-   <div id="main-content" style="position: relative; z-index: 1; left: 0; top: 0">	
+   <div>	
 		<script src="js/build/three.min.js"></script>
 
 		<script src="js/renderers/Projector.js"></script>
@@ -140,7 +129,7 @@
 				
 				 var material = new THREE.MeshLambertMaterial({
 					
-					map: THREE.ImageUtils.loadTexture('download1.jpg')
+					map: THREE.ImageUtils.loadTexture('images/download1.jpg')
 				});
 				
 				var geometry = new THREE.BoxGeometry( 100, 100, 100 );
@@ -249,13 +238,10 @@
 
 		</script>
 		
-		<div class="jumbotron" id="jumbo" style="position: absolute; z-index: 2">
-			<center>
-			<h1>ALFIE</h1>      
-			<p>Get Ready!</p>      
+		    <center>  
 			<a href="#" class="btn btn-info btn-lg" id="button"data-toggle="modal" data-target="#myModal">Launch</a>
 			<audio id="player" preload>
-								<source src="music.wav" type="audio/wav">
+								<source src="music/music.wav" type="audio/wav">
 									Your browser does not support the audio element.
 								</audio>
 			</center>
@@ -336,7 +322,7 @@
 						
 		
 		</script> 
-</div>
+
 </div>		
   
  <div id="myModal" class="modal fade">
@@ -366,9 +352,9 @@
   								<div class="modal-body">
 									<div id="sphere-area">
 									<center>
-									<img src="ftee.jpg" alt="ball" id="ftee" />
-									<img src="mtee.jpg" id="mtee" alt="" />
-									<img src="dress.jpg" id="dress" alt="" />
+									<img src="images/ftee.jpg" alt="ball" id="ftee" />
+									<img src="images/mtee.jpg" id="mtee" alt="" />
+									<img src="images/dress.jpg" id="dress" alt="" />
 									</center>
 									</div>
   								</div>
