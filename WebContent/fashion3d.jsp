@@ -57,7 +57,7 @@
 						data[i + 3] = 255;
 					}
 				}
-				ctx.putImageData(imgData, 550, 0);
+				ctx.putImageData(imgData, 500, 0);
 			}
 	
 	

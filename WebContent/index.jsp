@@ -64,7 +64,7 @@
    
     <div class="navbar-header">
         <a href="./index.html"><img src="images/logo.jpg" style="height: 30px; margin-top: 20px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
 
 		
@@ -77,7 +77,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		<li><a class="btn" href="">
 			 <img src="images/addtocart.png" alt="#">
 		</a></li>

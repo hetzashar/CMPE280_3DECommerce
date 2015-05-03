@@ -16,7 +16,7 @@ import java.util.Vector;
     private static Vector<Connection> usedConnections = new Vector<Connection>();   
       
     // The URL string used to connect to the database   
-    private static String urlString = "jdbc:mysql://localhost:3306/test";   
+    private static String urlString = "jdbc:mysql://localhost:3306/fashion3d";   
       
     // The username used to connect to the database   
     private static String userName = "root";       
