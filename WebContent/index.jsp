@@ -1,96 +1,158 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.fashion3d.beans.Products"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="com.fashion3d.db.ConnectionPool"%>
 <html>
-	<head>
-		  <title>Bootstrap Case</title>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<meta name="generator" content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
-			<meta name="viewport" content="width = 320" />
-			<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	
-		<style>	
-		body {
-				background: black;
-				padding:0;
-				margin:0;
-				font-weight: bold;
-				overflow:hidden;
-			}
-		
-		#sphere-area { height: 350px; position: relative; width: 100%; }
-		#sphere-area img { width: 500px; height: 500px; position: absolute; top: 50px; left: 250px; }
-		#sphere-area #mtee { opacity: 0; }
-		#sphere-area #dress { opacity: 0; }
-		.modal-dialog {
-			width: 100%;
-			height: 100%;
-			padding: 0;
-		}
-		.modal-content {
-			height: 100%;
-			border-radius: 0;
-		}
-		
-	
-	
-	
+<head>
+<title>3D Fashionista</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator"
+	content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
+<meta name="viewport" content="width = 320" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-		</style>
+<style>
+body {
+	background: black;
+	padding: 0;
+	margin: 0;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+#sphere-area {
+	height: 350px;
+	position: relative;
+	width: 100%;
+}
+
+#sphere-area img {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	top: 50px;
+	left: 250px;
+}
+
+#sphere-area #mtee {
+	opacity: 0;
+}
+
+#sphere-area #dress {
+	opacity: 0;
+}
+
+.modal-dialog {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+.modal-content {
+	height: 100%;
+	border-radius: 0;
+}
+.container-folio.row-fluid .span6:nth-child(2n+1), #container-folio.row-fluid .span6:nth-child(2n+1){
+			margin-left:0px;
+		}
 		
-		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
-		<script type='text/javascript' src='js/jquery.easing.1.2.js'></script>
-		<script type='text/javascript' src='js/jquery.circulate.js'></script>
-		<script type='text/javascript' src='js/example.js'></script>
-		<script>
+		.container-folio.row-fluid .span4:nth-child(3n+1), #container-folio.row-fluid .span4:nth-child(3n+1){
+			margin-left:0px;
+		}	
+		
+		.container-folio.row-fluid .span3:nth-child(4n+1), #container-folio.row-fluid .span3:nth-child(4n+1){
+			margin-left:0px;
+		}
+		
+		.row-fluid.articles-grid .span6:nth-child(2n+1){
+			margin-left:0px;
+		} /* fixed bs margin when row-fluid grid*/
+		
+		/* FIX BOOTSTRAP pull-right margin-lefo 0px fo :first-child */
+		.row-fluid [class*="span"].pull-right:first-child {
+			margin-left: 30px;
+		}
+		.row-fluid [class*="span"].left-side:last-child {
+			margin-left: 0px;
+			
+		}
+		@media (max-width: 940px) and (min-width: 768px){
+			.fixed-top{
+				max-width:225px;
+			}
+			.row-fluid [class*="span"].left-side:last-child {
+				clear:both;
+			}
+		}
+</style>
+
+<script type='text/javascript'
+	src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+<script type='text/javascript' src='js/jquery.easing.1.2.js'></script>
+<script type='text/javascript' src='js/jquery.circulate.js'></script>
+<script type='text/javascript' src='js/example.js'></script>
+<script>
 			$(document).ready(function() { 
 					$("#sphere-area").hide();
 			});
 				
 		</script>
-		
-	</head>
-	<body>
 
-	
+</head>
+<body>
 
 
-		<nav class="navbar navbar-inverse navbar-static-top">
-	
-  	
-  <div class="container-fluid">
-  
-   
-    <div class="navbar-header">
-        <a href="./index.html"><img src="images/logo.jpg" style="height: 30px; margin-top: 20px;"></a> 	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    </div>
 
-		
-      <ul class="nav navbar-nav nav-tab">
-        <li class="active"><a href="#">Home</a></li>
-		<li class="active"><a href="#">Male</a></li>
-		<li class="active"><a href="#">Female</a></li>
-		<li class="active"><a href="#">About Us</a></li>
-       
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-		<li><a class="btn" href="">
-			 <img src="images/addtocart.png" alt="#">
-		</a></li>
-      </ul>
-	 
-    </div>
-	
-	
-  
-</nav>
-  <br>
-  
-   <div>	
+
+	<nav class="navbar navbar-inverse navbar-static-top">
+
+
+		<div class="container-fluid">
+
+
+			<div class="navbar-header">
+				<a href="./index.html"><img src="images/logo.jpg"
+					style="height: 30px; margin-top: 20px;"></a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+
+
+			<ul class="nav navbar-nav nav-tab">
+				<li class="active"><a href="index.jsp">Home</a></li>
+				<li class="active"><a href="men.jsp">Male</a></li>
+				<li class="active"><a href="women.jsp">Female</a></li>
+				<li class="active"><a href="#">About Us</a></li>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+						Sign Up</a></li>
+				<li><a href="login.jsp"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a class="btn" href=""> <img src="images/addtocart.png"
+						alt="#">
+				</a></li>
+			</ul>
+
+		</div>
+
+
+
+	</nav>
+	<br>
+
+	<div>
 		<script src="js/build/three.min.js"></script>
 
 		<script src="js/renderers/Projector.js"></script>
@@ -99,7 +161,7 @@
 		<script src="js/libs/stats.min.js"></script>
 		<script>
 			
-				var container, stats;
+			var container, stats;
 
 			var camera, scene, renderer;
 
@@ -237,20 +299,21 @@
 			}
 
 		</script>
-		
-		    <center>  
-			<a href="#" class="btn btn-info btn-lg" id="button"data-toggle="modal" data-target="#myModal">Launch</a>
-			<audio id="player" preload>
-								<source src="music/music.wav" type="audio/wav">
-									Your browser does not support the audio element.
-								</audio>
-			</center>
-   
-  
- 
 
- 
-<script>
+		<center>
+			<a href="#" class="btn btn-info btn-lg" id="button"
+				data-toggle="modal" data-target="#myModal">Launch</a>
+			<audio id="player" preload>
+				<source src="music/music.wav" type="audio/wav">
+				Your browser does not support the audio element.
+			</audio>
+		</center>
+
+
+
+
+
+		<script>
 			
 			$(document).ready(function() {
 				var playing = false;
@@ -321,17 +384,18 @@
 			});
 						
 		
-		</script> 
+		</script>
 
-</div>		
-  
- <div id="myModal" class="modal fade">
-  						<div class="modal-dialog">
-  							<div class="modal-content">
-								
-  								<div class="modal-header">
-  									<button type="button" id="modalButton" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-  									<script>
+	</div>
+
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" id="modalButton" class="close"
+						data-dismiss="modal" aria-hidden="true">×</button>
+					<script>
 										 $(document).ready(function() {	
 										  var playing = true;
 
@@ -348,27 +412,87 @@
 									  });
 									});
 									</script>
-  								</div>
-  								<div class="modal-body">
-									<div id="sphere-area">
-									<center>
-									<img src="images/ftee.jpg" alt="ball" id="ftee" />
-									<img src="images/mtee.jpg" id="mtee" alt="" />
-									<img src="images/dress.jpg" id="dress" alt="" />
-									</center>
-									</div>
-  								</div>
-  								
-  							</div>
-  						</div>
-  					</div>
-	
-	
-</div>
-				
+				</div>
+				<div class="modal-body">
+					<div id="sphere-area">
+						<center>
+							<img src="images/ftee.jpg" alt="ball" id="ftee" /> <img
+								src="images/mtee.jpg" id="mtee" alt="" /> <img
+								src="images/dress.jpg" id="dress" alt="" />
+						</center>
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</div>
+	<%
+		PreparedStatement pst = null;
+		List<Products> menList = new ArrayList<Products>();
+		List<Products> womenList = new ArrayList<Products>();
+		ResultSet rs = null;
+		Connection conn = null;
+		Products bean = new Products();
 
+		try {
+			conn = ConnectionPool.getConnectionFromPool();
 
-</div>
-	</body>
+			pst = conn.prepareStatement("SELECT * FROM PRODUCTS");
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				String category=rs.getString("CATEGORY");
+				bean = new Products();
+				bean.setProductId(rs.getInt("PRODUCT_ID"));
+				bean.setCategory(category);
+				bean.setProductName(rs.getString("PRODUCT_NAME"));
+				bean.setProductCount(rs.getInt("PRODUCT_COUNT"));
+				bean.setBuyersCount(rs.getInt("BUYERS_COUNT"));
+				bean.setTnImagePath(rs.getString("TN_IMAGE_PATH"));
+				bean.setInitialColor(rs.getString("INITIAL_COLOR"));
+				bean.setAddedBy(rs.getInt("ADDED_BY"));
+				bean.setProductDescription(rs.getString("PRODUCT_DESCRIPTION"));
+				bean.setPrice(rs.getFloat("PRICE"));
+				bean.setImagePath(rs.getString("BIG_IMAGE_PATH"));
+				bean.setTitle(rs.getString("TITLE"));
+				if(category.equals("MEN")){
+					menList.add(bean);					
+				}else{
+					womenList.add(bean);
+				}
+			}
+			session.setAttribute("menList", menList);
+			session.setAttribute("womenList", womenList);
+			
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			if (conn != null) {
+				ConnectionPool.addConnectionBackToPool(conn);
+			}
+			if (pst != null) {
+				pst.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+		}
+	%>
+	<footer class="row-fluid">
+		      <div class="span3">
+		        <h4 class="line3 center standart-h4title"><span>Navigation</span></h4>
+		        <ul class="footer-links">
+		          <li><a href="contactus.jsp">Contact Us</a></li>
+		          <li><a href="neareststore.jsp">Nearest Store</a></li>
+		        </ul>
+		      </div>
+		  
+		<div class="span12">
+			<hr>
+		        <p>3D Fashionista Developed by SJSU Students</p>
+		</div>
+			  
+		</footer>
+</body>
 </html>

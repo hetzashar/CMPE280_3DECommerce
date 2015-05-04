@@ -30,18 +30,18 @@ public class LoginDao {
 		} finally {  
 			if(conn!=null){
 				ConnectionPool.addConnectionBackToPool(conn);
-			}
-			if (pst != null) {  
-				try {  
-					pst.close();  
-				} catch (SQLException e) {  
-					e.printStackTrace();  
+				}
+				if (pst != null) {  
+					try {  
+						pst.close();  
+					} catch (SQLException e) {  
+						e.printStackTrace();  
+					}  
 				}  
-			}  
-			if (rs != null) {  
-				try {  
-					rs.close();  
-				} catch (SQLException e) {  
+				if (rs != null) {  
+					try {  
+						rs.close();  
+					} catch (SQLException e) {  
 					e.printStackTrace();  
 				}  
 			}  

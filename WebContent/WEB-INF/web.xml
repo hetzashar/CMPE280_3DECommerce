@@ -33,4 +33,12 @@
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/HomeServlet/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>productDetail</servlet-name>
+    <servlet-class>com.fashion3d.servlet.ProductDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>productDetail</servlet-name>
+    <url-pattern>/productDetail/*</url-pattern>
+  </servlet-mapping>
 </web-app>
