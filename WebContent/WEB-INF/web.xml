@@ -34,6 +34,38 @@
     <url-pattern>/HomeServlet/*</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <servlet-class>com.fashion3d.servlet.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddToCartServlet</servlet-name>
+    <url-pattern>/AddToCartServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteCartServlet</servlet-name>
+    <servlet-class>com.fashion3d.servlet.DeleteCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteCartServlet</servlet-name>
+    <url-pattern>/DeleteCartServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateCartServlet</servlet-name>
+    <servlet-class>com.fashion3d.servlet.UpdateCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCartServlet</servlet-name>
+    <url-pattern>/UpdateCartServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>com.fashion3d.servlet.logoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logoutServlet</servlet-name>
+    <url-pattern>/logoutServlet/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>productDetail</servlet-name>
     <servlet-class>com.fashion3d.servlet.ProductDetailServlet</servlet-class>
   </servlet>

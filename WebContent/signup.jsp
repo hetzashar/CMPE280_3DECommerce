@@ -25,11 +25,11 @@
 <body>
 
 	
-	
-    <div class="containerr">
+	<br/><br/><br/>
+    <div class="container">
 <section id="content">
 		<form role="form"  id = "myform" action="RegisterServlet" method="POST"  onsubmit="return checkForm(this);">
-   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h1>&nbsp;&nbsp;&nbsp;&nbsp;Register</h1>
+   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h1>Register</h1>
     
 	<div >
         <input path="username"  id="username" type="text" name="username" value=""  required="required"  placeholder="Enter username">

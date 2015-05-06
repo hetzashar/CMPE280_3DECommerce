@@ -25,14 +25,14 @@ import com.mysql.jdbc.PreparedStatement;
 /**
  * Servlet implementation class RegisterServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/logoutServlet")
+public class logoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public logoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,20 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("text/html"); 
+		PrintWriter out = response.getWriter();    
+		HttpSession session = request.getSession(false); 
+		try{
+			session.removeAttribute("loggedInUser");
+			session.removeAttribute("itemsInCart");
+			RequestDispatcher rd=null;
+			rd=request.getRequestDispatcher("index.jsp");
+			rd.forward(request,response); 
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -51,31 +64,14 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html"); 
 		PrintWriter out = response.getWriter();    
-		String username=request.getParameter("username");    
-		String password=request.getParameter("password"); 
 		HttpSession session = request.getSession(false); 
 		try{
-
-			Users user=LoginDao.validate(username, password);
-			if(user!=null){    
-				List<ShoppingCart> cartList = ShoppingCartDao.fetchShoppingCart(user.getUserId());
-				session.setAttribute("itemsInCart", cartList);
-				LoginDao.update(user.getUserId());
-				session.setAttribute("loggedInUser", user);
-				RequestDispatcher rd=null;
-				rd=request.getRequestDispatcher("index.jsp");
-				rd.forward(request,response);    
-			}
-			else{   
-				out.println("<script type=\"text/javascript\">");
-				out.print("alert('Invalid username or password error');");   
-				out.println("</script>");
-				RequestDispatcher rd=request.getRequestDispatcher("index.jsp");    
-				rd.include(request,response); 
-			}
-			out.close();
-
-}
+			session.removeAttribute("loggedInUser");
+			session.removeAttribute("itemsInCart");
+			RequestDispatcher rd=null;
+			rd=request.getRequestDispatcher("index.jsp");
+			rd.forward(request,response); 
+		}
 		catch(Exception e){
 			e.printStackTrace();
 		}

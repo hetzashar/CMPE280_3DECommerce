@@ -1,3 +1,5 @@
+<%@page import="com.fashion3d.beans.ShoppingCart"%>
+<%@page import="com.fashion3d.beans.Users"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.fashion3d.beans.Products"%>
 <%@page import="java.util.List"%>
@@ -10,72 +12,85 @@
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<script src="bootstrap/js/bootstrap-switch.js"></script>
-	<style type="text/css">
-		body {
-	        padding-top: 0px;
-	        padding-bottom: 40px;
-	        padding-top: 0px;
-	        padding-bottom: 0px;
-			font-family: 'Roboto', sans-serif;
-			background-image:url("images/background.png");
-	      }
-		  
-		  *{
-		  box-sizing:border-box;
-		  -webkit-box-sizing:border-box;
-		  -moz-box-sizing:border-box;
-		  }
-			
-		.navbar .container  {
-			max-width: 1170px;
-		}
-		
-		  h1,h2,h3,h4,h5,h6{
-			font-weight:200;
-		  }
-		  .navbar-inverse .navbar-inner{
-			-webkit-border-radius: 0px;
-				-moz-border-radius: 0px;
-					border-radius: 0px;
-					background:#282828;
-					border:none;
-			}
-			
-			.page-header{
-				border:none;
-				padding: 10px 0px 0px;
-				margin: 0px 0 0px;
-			}
-		</style>
-		<title>3D Fashionista</title>
+	<link rel="stylesheet" href="css/header.css">
+	<title>3D Fashionista</title>
 	</head>
 	
-	<body>
+	<body style="background-image:url('images/background.png')">
 		<nav class="navbar navbar-inverse navbar-static-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a href="./index.html"><img src="images/logo.jpg"
-						style="height: 30px; margin-top: 20px;"></a>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="./index.html"><img src="images/logo.jpg"
+							style="height: 30px; margin-top: 20px;"></a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</div>
+					<ul class="nav navbar-nav nav-tab">
+						<li class="active"><a href="index.jsp">Home</a></li>
+						<li class="active"><a href="men.jsp">Male</a></li>
+						<li class="active"><a href="women.jsp">Female</a></li>
+						<li class="active"><a href="#">About Us</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" style="margin-right:40px">
+						<%Users user=(Users)session.getAttribute("loggedInUser");
+							if(user!=null && user.getUserId()!=0){
+								int day=user.getLastLoggedIn().getDate();
+								int month=user.getLastLoggedIn().getMonth()+1;
+								int year=user.getLastLoggedIn().getYear()+1900;
+								int hh=user.getLastLoggedIn().getHours();
+								int min=user.getLastLoggedIn().getMinutes();
+							%>
+							 <li class="dropdown">
+								 <a href="/CMPE280_3DECommerce/logoutServlet" class="dropdown-toggle" data-toggle="dropdown"> Welcome <%=user.getFname()%>! Last logged in: <%=month%>/<%=day%>/<%=year%> <%=hh%>:<%=min%><b class="caret"></b></a>
+								 <ul class="dropdown-menu">
+								 	<li style="margin-left:5px"><a href="/CMPE280_3DECommerce/logoutServlet">Logout</a></li>
+								 </ul>
+								 </li>
+							<%}else{%>
+						
+						<li><a href="login.jsp"><span
+								class="glyphicon glyphicon-user"></span> Login</a></li>
+							<%}%>
+						<%
+							int itemsInCart=0;
+							List<ShoppingCart> cartList = (ArrayList<ShoppingCart>)session.getAttribute("itemsInCart");
+							if(cartList!=null){
+								itemsInCart=cartList.size();
+							}
+						%>
+						 <li class="dropdown">
+					          <a href="cartcheckout.jsp" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart"></span> <%=itemsInCart%> item(s)<b class="caret"></b></a>
+					          <ul class="dropdown-menu">
+					          	<%if(itemsInCart == 0){ %>
+					            <li>No Items found</li>
+					            <%}else{
+					            	float totalCost=0f;
+					            	for(int i=0; i<itemsInCart; i++){
+					            		ShoppingCart cart = cartList.get(i);
+					            		totalCost=totalCost+cart.getPriceOfTotalItems();
+					            	%>
+										<li><a href="/CMPE280_3DECommerce/productDetail?productId=<%=cart.getProductId()%>">
+											<table style="font-size:12px;">
+											<tr><td>
+											<img alt="" src="<%=cart.getProducts().getTnImagePath() %>" width="50px" height="50px"></td>
+											<td><p><%=cart.getProducts().getTitle() %></p>
+											<p>Quantity: <%=cart.getTotalItems() %></p>
+											</tr>
+											</table>
+										</a></li>		            	
+					           <% }
+					            	%>
+					           			<li class="divider"></li>
+					           			<b><center>Total Cost: <%=totalCost %></center></b>
+					           			<li class="divider"></li>
+					           			<a href="cartcheckout.jsp" class="btn btn-info" role="button" style="margin-left:5px">Checkout</a>
+					           			
+					           <%}%>
+					          </ul>
+					        </li>
+					</ul>
 				</div>
-				<ul class="nav navbar-nav nav-tab">
-					<li class="active"><a href="index.jsp">Home</a></li>
-					<li class="active"><a href="men.jsp">Male</a></li>
-					<li class="active"><a href="women.jsp">Female</a></li>
-					<li class="active"><a href="#">About Us</a></li>
-	
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Sign Up</a></li>
-					<li><a href="login.jsp"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a class="btn" href=""> <img src="images/addtocart.png"
-							alt="#">
-					</a></li>
-				</ul>
-			</div>
-		</nav>
+			</nav>
+			
 		<br/>
 		<div style="margin-left:30px;margin-right:30px;align:center">
 		<center>
@@ -102,7 +117,7 @@
 							<h3 class=""><%=product.getTitle() %></h3>
 								<p class=""><%=product.getProductName() %></p>
 								<p class="lead">$<%=product.getPrice() %></p>
-	 						    <p><a href="#" class="btn btn-primary" role="button">Add to cart</a> <a href="/CMPE280_3DECommerce/productDetail?productId=<%=product.getProductId()%>" class="btn btn-default" role="button">View Product Detail</a></p>
+	 						    <p><a href="/CMPE280_3DECommerce/AddToCartServlet?page=women.jsp&productId=<%=product.getProductId()%>" class="btn btn-primary" role="button">Add to cart</a> <a href="/CMPE280_3DECommerce/productDetail?productId=<%=product.getProductId()%>" class="btn btn-default" role="button">View Product Detail</a></p>
 							</div> 
 						</div>
 					</div>

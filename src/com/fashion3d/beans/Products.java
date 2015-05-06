@@ -1,6 +1,8 @@
 package com.fashion3d.beans;
 
-public class Products {
+import java.io.Serializable;
+
+public class Products implements Serializable{
 	
 	int productId;
 	String category;

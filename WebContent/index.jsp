@@ -1,3 +1,7 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.fashion3d.beans.Users"%>
+<%@page import="com.fashion3d.beans.ShoppingCart"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,7 +25,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+	$('ul.nav li.dropdown').hover(function() {
+	  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	}, function() {
+	  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	});
+</script>
 <style>
 body {
 	background: black;
@@ -63,38 +73,6 @@ body {
 	height: 100%;
 	border-radius: 0;
 }
-.container-folio.row-fluid .span6:nth-child(2n+1), #container-folio.row-fluid .span6:nth-child(2n+1){
-			margin-left:0px;
-		}
-		
-		.container-folio.row-fluid .span4:nth-child(3n+1), #container-folio.row-fluid .span4:nth-child(3n+1){
-			margin-left:0px;
-		}	
-		
-		.container-folio.row-fluid .span3:nth-child(4n+1), #container-folio.row-fluid .span3:nth-child(4n+1){
-			margin-left:0px;
-		}
-		
-		.row-fluid.articles-grid .span6:nth-child(2n+1){
-			margin-left:0px;
-		} /* fixed bs margin when row-fluid grid*/
-		
-		/* FIX BOOTSTRAP pull-right margin-lefo 0px fo :first-child */
-		.row-fluid [class*="span"].pull-right:first-child {
-			margin-left: 30px;
-		}
-		.row-fluid [class*="span"].left-side:last-child {
-			margin-left: 0px;
-			
-		}
-		@media (max-width: 940px) and (min-width: 768px){
-			.fixed-top{
-				max-width:225px;
-			}
-			.row-fluid [class*="span"].left-side:last-child {
-				clear:both;
-			}
-		}
 </style>
 
 <script type='text/javascript'
@@ -111,44 +89,78 @@ body {
 
 </head>
 <body>
-
-
-
-
 	<nav class="navbar navbar-inverse navbar-static-top">
-
-
 		<div class="container-fluid">
-
-
 			<div class="navbar-header">
 				<a href="./index.html"><img src="images/logo.jpg"
 					style="height: 30px; margin-top: 20px;"></a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
-
-
 			<ul class="nav navbar-nav nav-tab">
 				<li class="active"><a href="index.jsp">Home</a></li>
 				<li class="active"><a href="men.jsp">Male</a></li>
 				<li class="active"><a href="women.jsp">Female</a></li>
 				<li class="active"><a href="#">About Us</a></li>
-
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-						Sign Up</a></li>
+			<ul class="nav navbar-nav navbar-right" style="margin-right:40px">
+				<%Users user=(Users)session.getAttribute("loggedInUser");
+					if(user!=null && user.getUserId()!=0){
+						int day=user.getLastLoggedIn().getDate();
+						int month=user.getLastLoggedIn().getMonth()+1;
+						int year=user.getLastLoggedIn().getYear()+1900;
+						int hh=user.getLastLoggedIn().getHours();
+						int min=user.getLastLoggedIn().getMinutes();
+					%>
+					 <li class="dropdown">
+						 <a href="/CMPE280_3DECommerce/logoutServlet" class="dropdown-toggle" data-toggle="dropdown"> Welcome <%=user.getFname()%>! Last logged in: <%=month%>/<%=day%>/<%=year%> <%=hh%>:<%=min%><b class="caret"></b></a>
+						 <ul class="dropdown-menu">
+						 	<li style="margin-left:5px"><a href="/CMPE280_3DECommerce/logoutServlet">Logout</a></li>
+						 </ul>
+						 </li>
+					<%}else{%>
+				
 				<li><a href="login.jsp"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
-				<li><a class="btn" href=""> <img src="images/addtocart.png"
-						alt="#">
-				</a></li>
+						class="glyphicon glyphicon-user"></span> Login</a></li>
+					<%}%>
+				<%
+					int itemsInCart=0;
+					List<ShoppingCart> cartList = (ArrayList<ShoppingCart>)session.getAttribute("itemsInCart");
+					if(cartList!=null){
+						itemsInCart=cartList.size();
+					}
+				%>
+				 <li class="dropdown">
+			          <a href="cartcheckout.jsp" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart"></span> <%=itemsInCart%> item(s)<b class="caret"></b></a>
+			          <ul class="dropdown-menu">
+			          	<%if(itemsInCart == 0){ %>
+			            <li>No Items found</li>
+			            <%}else{
+			            	float totalCost=0f;
+			            	for(int i=0; i<itemsInCart; i++){
+			            		ShoppingCart cart = cartList.get(i);
+			            		totalCost=totalCost+cart.getPriceOfTotalItems();
+			            	%>
+								<li><a href="/CMPE280_3DECommerce/productDetail?productId=<%=cart.getProductId()%>">
+									<table style="font-size:12px;">
+									<tr><td>
+									<img alt="" src="<%=cart.getProducts().getTnImagePath() %>" width="50px" height="50px"></td>
+									<td><p><%=cart.getProducts().getTitle() %></p>
+									<p>Quantity: <%=cart.getTotalItems() %></p>
+									</tr>
+									</table>
+								</a></li>		            	
+			           <% }
+			            	%>
+			           			<li class="divider"></li>
+			           			<b><center>Total Cost: <%=totalCost %></center></b>
+			           			<li class="divider"></li>
+			           			<a href="cartcheckout.jsp" class="btn btn-info" role="button" style="margin-left:5px">Checkout</a>
+			           			
+			           <%}%>
+			          </ul>
+			        </li>
 			</ul>
-
 		</div>
-
-
-
 	</nav>
 	<br>
 
@@ -376,11 +388,6 @@ body {
     
 });
 				
-				
-			
-				
-
-					
 			});
 						
 		
