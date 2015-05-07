@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fashion3d.beans.Users"%>
@@ -424,11 +425,6 @@ canvas {
 			}
 
 		</script>
-
-
-			
-			
-
 	</div>
 
 	
@@ -461,6 +457,19 @@ canvas {
 				bean.setPrice(rs.getFloat("PRICE"));
 				bean.setImagePath(rs.getString("BIG_IMAGE_PATH"));
 				bean.setTitle(rs.getString("TITLE"));
+				bean.setHues(rs.getString("HUE_RANGE"));
+				HashMap<String, String> newMap = new HashMap<String, String>();
+				if(rs.getString("COLORSHIFT")!=null){
+					String colorShift=rs.getString("COLORSHIFT");
+					if(colorShift!=null){
+						String[] strTok = colorShift.split(",");
+						
+						for(String str:strTok){
+							newMap.put((str.split(":"))[0], (str.split(":"))[1]);
+						}
+					}
+				}
+				bean.setColorListMap(newMap);
 				if(category.equals("MEN")){
 					menList.add(bean);					
 				}else{
