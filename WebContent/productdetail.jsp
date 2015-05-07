@@ -14,6 +14,11 @@
 	<link rel="stylesheet" href="css/header.css">
 	<script src="bootstrap/js/bootstrap-switch.js"></script>
 	<title>3D Fashionista</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+    <link rel="stylesheet" href="css/colorPicker.css">
+    <script src ="js/colorPicker.js"></script>
 	</head>
 
 	<body>
@@ -104,6 +109,22 @@
 	                <p><%=prod.getProductDescription() %></p>
 	                <hr>
 	                <h3>Price - $<%=prod.getPrice()%></h3>
+	                <h3>Choose Color</h3>
+	                <!-- Color Picker | Load color pallete from DB -->
+	                <select id = "colorPicker" name="colorpicker-shortlist">
+					  <option value="#7bd148">Green</option>
+					  <option value="#5484ed">Bold blue</option>
+					  <option value="#a4bdfc">Blue</option>
+					  <option value="#46d6db">Turquoise</option>
+					  <option value="#7ae7bf">Light green</option>
+					  <option value="#51b749">Bold green</option>
+					  <option value="#fbd75b">Yellow</option>
+					  <option value="#ffb878">Orange</option>
+					  <option value="#ff887c">Red</option>
+					  <option value="#dc2127">Bold red</option>
+					  <option value="#dbadff">Purple</option>
+					  <option value="#e1e1e1">Gray</option>
+					</select>
 	                <p class="muted">Inclusive of all taxes. Free home delivery.</p>
 	                <br>
 	                <p><a href="/CMPE280_3DECommerce/AddToCartServlet?page=productdetail.jsp&productId=<%=prod.getProductId()%>" class="btn btn-success btn-large">Add to Cart</a></p>
@@ -120,5 +141,8 @@
 	            </div>
 	        </div>
 	    </div>
+	    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+
+	    
 	</body>
 </html>

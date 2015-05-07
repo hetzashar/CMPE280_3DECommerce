@@ -21,12 +21,30 @@
 <!--         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> -->
   
 <title></title>
+
+<style>
+video#bgvid {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	background: url(polina.jpg) no-repeat;
+	background-size: cover;
+	-webkit-filter: blur(14px);
+	opacity: 0.4;
+}</style>
 </head>
 <body>
 
 	
 	<br/><br/><br/>
     <div class="container">
+    <video muted autoplay loop poster="polina.jpg" id="bgvid"> <source
+			src="fashion.mp4" type="video/mp4"></video>
 <section id="content">
 		<form role="form"  id = "myform" action="RegisterServlet" method="POST"  onsubmit="return checkForm(this);">
    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h1>Register</h1>
