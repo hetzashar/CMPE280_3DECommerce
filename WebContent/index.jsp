@@ -19,8 +19,9 @@
 	content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
 <meta name="viewport" content="width = 320" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<script src="http://code.createjs.com/createjs-2013.05.14.min.js"></script>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
@@ -45,6 +46,12 @@ body {
 	height: 350px;
 	position: relative;
 	width: 100%;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #sphere-area img {
@@ -165,6 +172,7 @@ body {
 	<br>
 
 	<div>
+	
 		<script src="js/build/three.min.js"></script>
 
 		<script src="js/renderers/Projector.js"></script>
@@ -201,18 +209,103 @@ body {
 				
 				
 				
-				 var material = new THREE.MeshLambertMaterial({
+			
 					
-					map: THREE.ImageUtils.loadTexture('images/download1.jpg')
-				});
 				
-				var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+				
+				var geometry = new THREE.BoxGeometry(180,180,180,1,1,1);
 
+				var material= [];
+				for(i=0;i<250;i++){
+			    var randomNumber = Math.floor(Math.random() * (7 - 1)) + 1;
+			    //var toCall = 'cubeMaterials' + randomNumber;
+			    //console.log(toCall)
+			    if(randomNumber == 1){
+			    	var cubeMaterials =      [ 
+			    						    
+						                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+						                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+						                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+						                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+						                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+						                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever-2.png')}),
+						                     ]
+			    }
+			    	else if(randomNumber == 2){
+					var cubeMaterials = 		[ 
+											    
+							                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+							                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+							                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+							                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+							                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+							                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever-3.png')}),
+							                    ]
+			    		
+			    	}
+			    
+			    	else if(randomNumber == 3){
+						var cubeMaterials = 		[ 
+												    
+								                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+								                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever.png')}),
+								                    ]
+				    		
+				    	}
+			    
+			    	else if(randomNumber == 4){
+						var cubeMaterials = 		[ 
+												    
+								                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+								                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever-1.png')}),
+								                    ]
+				    		
+				    	}
+			    
+			    	else if(randomNumber == 5){
+						var cubeMaterials = 		[ 
+												    
+								                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+								                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever-4.png')}),
+								                    ]
+				    		
+				    	}
+			    
+			    	else if(randomNumber == 6){
+						var cubeMaterials = 		[ 
+												    
+								                    new THREE.MeshBasicMaterial({color:0x00ff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x0000ff, transparent:true, opacity:0, side: THREE.DoubleSide}),
+								                    new THREE.MeshBasicMaterial({color:0xffff00, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0xff00ff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshBasicMaterial({color:0x00ffff, transparent:true, opacity:0, side: THREE.DoubleSide}), 
+								                    new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture('images/firstever-5.png')}),
+								                    ]
+				    		
+				    	}
+			    
+				material[i] = new THREE.MeshFaceMaterial(cubeMaterials);
+				}
+				
+				
+				
 				group = new THREE.Group();
 
-				for ( var i = 0; i < 200; i ++ ) {
+				for ( var i = 0; i < 250; i ++ ) {
 
-					var mesh = new THREE.Mesh( geometry, material );
+					var mesh = new THREE.Mesh( geometry, material[i] );
 					mesh.position.x = Math.random() * 2000 - 1000;
 					mesh.position.y = Math.random() * 2000 - 1000;
 					mesh.position.z = Math.random() * 2000 - 1000;
@@ -223,6 +316,7 @@ body {
 					group.add( mesh );
 
 				}
+				
 				
 
 				scene.add( group );
@@ -275,7 +369,7 @@ body {
 
 			}
 			 // Load the background texture
-        var texture = THREE.ImageUtils.loadTexture( 'wallpaper.jpg' );
+        var texture = THREE.ImageUtils.loadTexture( 'images/wallpaper.jpg' );
         var backgroundMesh = new THREE.Mesh(
             new THREE.PlaneGeometry(2, 2, 0),
             new THREE.MeshBasicMaterial({
@@ -312,127 +406,13 @@ body {
 
 		</script>
 
-		<center>
-			<a href="#" class="btn btn-info btn-lg" id="button"
-				data-toggle="modal" data-target="#myModal">Launch</a>
-			<audio id="player" preload>
-				<source src="music/music.wav" type="audio/wav">
-				Your browser does not support the audio element.
-			</audio>
-		</center>
 
-
-
-
-
-		<script>
 			
-			$(document).ready(function() {
-				var playing = false;
-			$('a[href="#"]').click(function() {
-				
-				$("#myModal").show();
-				$("#sphere-area").show();
-				if (playing == false) {
-				document.getElementById('player').play();
-				playing = true;
-				
-
-			} 	else {
-				document.getElementById('player').pause();
-				playing = false;
-				
-      }
-
-				
-			});
-			$(window).load(function() {
-
-
-    function startBallOne() {
-        $("#ftee").circulate({
-            speed: 4000,
-            height: 100,
-            width: -400,
-            sizeAdjustment: 40,
-            loop: true,
-            zIndexValues: [1, 1, 3, 3]
-        });
-    }
-    
-    function startBallTwo() {
-        $("#mtee").circulate({
-            speed: 4000,
-            height: 120,
-            width: -400,
-            sizeAdjustment: 35,
-            loop: true,
-            zIndexValues: [2, 2, 2, 2]
-        })
-    }
-    
-    function startBallThree() {
-        $("#dress").circulate({
-            speed: 4000,
-            height: 140,
-            width: -400,
-            sizeAdjustment: 30,
-            loop: true,
-            zIndexValues: [3, 3, 1, 1]
-        }).fadeIn();
-    }
-            
-    startBallOne();
-    setTimeout(startBallTwo, 2000);
-    setTimeout(startBallThree, 4000);
-    
-});
-				
-			});
-						
-		
-		</script>
+			
 
 	</div>
 
-	<div id="myModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<button type="button" id="modalButton" class="close"
-						data-dismiss="modal" aria-hidden="true">×</button>
-					<script>
-										 $(document).ready(function() {	
-										  var playing = true;
-
-											$('#modalButton').click(function() {
-											
-
-											if (playing == true) {
-											document.getElementById('player').pause();
-											  playing = false;
-											 
-
-										  } 
-
-									  });
-									});
-									</script>
-				</div>
-				<div class="modal-body">
-					<div id="sphere-area">
-						<center>
-							<img src="images/ftee.jpg" alt="ball" id="ftee" /> <img
-								src="images/mtee.jpg" id="mtee" alt="" /> <img
-								src="images/dress.jpg" id="dress" alt="" />
-						</center>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
+	
 	<%
 		PreparedStatement pst = null;
 		List<Products> menList = new ArrayList<Products>();
@@ -501,5 +481,13 @@ body {
 		</div>
 			  
 		</footer>
+		<script src="js/stars.js"></script>
+		<script src='js/3dClick.js'></script>
+		<script>
+		mesh.on('click', function(){
+		    console.log('clicked');
+		});
+		</script>
+		
 </body>
 </html>
