@@ -138,5 +138,11 @@
 			}
 			%>
 			</div>
+			
+			<footer>
+		
+		<p style="right:20px;position:absolute;"> Copyrights © 2015 | All right reserved </p>
+		</div>
+		</footer>
 	</body>
 </html>

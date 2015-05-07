@@ -89,11 +89,21 @@ section#content {
 		<div class="button"></div>
 		<!-- button --> </section>
 		<!-- content -->
+		
+		
+		
 	</div>
 	<!-- container -->
+	
+		<footer>
+		<div class="row">
+		<p> Copyrights 2015 </p>
+		</div>
+		</footer>
 </body>
 <script type="text/javascript" src="js/script.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/js/bootstrap-switch.js"></script>
+		
 </html>

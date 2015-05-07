@@ -106,19 +106,27 @@ canvas {
 
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top">
+	<nav style="z-index: 500"class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span> 
+		    </button>
 				<a href="./index.html"
 					style="font-family: Dancing Script, cursive; font-size: 32px">Alfie</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
-			<ul class="nav navbar-nav nav-tab">
+			<div class="collapse navbar-collapse" id="myNavbar">
+      
+			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.jsp">Home</a></li>
 				<li class="active"><a href="men.jsp">Male</a></li>
 				<li class="active"><a href="women.jsp">Female</a></li>
 				<li class="active"><a href="#">About Us</a></li>
 			</ul>
+				
 			<ul class="nav navbar-nav navbar-right" style="margin-right:40px">
 				<%Users user=(Users)session.getAttribute("loggedInUser");
 					if(user!=null && user.getUserId()!=0){
@@ -177,6 +185,7 @@ canvas {
 			          </ul>
 			        </li>
 			</ul>
+		</div>
 		</div>
 	</nav>
 	<br>
