@@ -3,7 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>3D Fashionista - Login</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="description" content="RGB Indexing of merchandise">
+<meta name="author" content="CMPE280 Team 03">
+<meta name="alfie content='10 days'">
+<meta name="distribution" content="web">
+<meta http-equiv="refresh" content="30">
+<meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="stylee.css">

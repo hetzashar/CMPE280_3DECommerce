@@ -11,15 +11,25 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="com.fashion3d.db.ConnectionPool"%>
 <html>
-<head>
+<head lang="en">
 <title>3D Fashionista</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="generator"
-	content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="description" content="RGB Indexing of merchandise">
+<meta name="author" content="CMPE280 Team 03">
+<meta name="alfie content='10 days'">
+<meta name="distribution" content="web">
+<meta http-equiv="refresh" content="30">
+<meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
+<meta name="generator" content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
 <meta name="viewport" content="width = 320" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<link
+	href='http://fonts.googleapis.com/css?family=Dancing+Script:400,700'
+	rel='stylesheet' type='text/css'>
 <script src="http://code.createjs.com/createjs-2013.05.14.min.js"></script>
 
 <script
@@ -99,8 +109,8 @@ canvas {
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a href="./index.html"><img src="images/logo.jpg"
-					style="height: 30px; margin-top: 20px;"></a>
+				<a href="./index.html"
+					style="font-family: Dancing Script, cursive; font-size: 32px">Alfie</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<ul class="nav navbar-nav nav-tab">
