@@ -20,7 +20,7 @@
 <meta name="viewport" content="width = 320" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
