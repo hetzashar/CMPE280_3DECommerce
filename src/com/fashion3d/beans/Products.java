@@ -1,6 +1,7 @@
 package com.fashion3d.beans;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class Products implements Serializable{
 	
@@ -16,7 +17,21 @@ public class Products implements Serializable{
 	float price;
 	String imagePath;
 	String title;
+	HashMap<String, String> colorListMap;
+	String hues;
 	
+	public String getHues() {
+		return hues;
+	}
+	public void setHues(String hues) {
+		this.hues = hues;
+	}
+	public HashMap<String, String> getColorListMap() {
+		return colorListMap;
+	}
+	public void setColorListMap(HashMap<String, String> colorListMap) {
+		this.colorListMap = colorListMap;
+	}
 	public int getProductId() {
 		return productId;
 	}

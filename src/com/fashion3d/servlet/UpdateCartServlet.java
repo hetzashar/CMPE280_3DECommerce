@@ -40,12 +40,14 @@ public class UpdateCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();
+		
 		int cartId = Integer.parseInt(request.getParameter("cartId"));
 		String modifiedColor = request.getParameter("newColor");
 		String page=request.getParameter("page");
-		String itemCount = "itemCount"+String.valueOf(cartId);
+		String itemCount = "itemCount"+cartId+"";
+		System.out.println(itemCount);
 		System.out.println("Parameter:: "+request.getParameter(itemCount)+request.getAttribute(itemCount));
-		int noOfItems=Integer.parseInt(request.getParameter("itemCount"+String.valueOf(cartId)));
+		int noOfItems=Integer.parseInt(request.getParameter(itemCount));
 		float pricePerItem=Float.parseFloat(request.getParameter("pricePerItem"));
 		String isComplete=request.getParameter("isComplete");
 		HttpSession session= request.getSession();
@@ -66,6 +68,7 @@ public class UpdateCartServlet extends HttpServlet {
 		response.setContentType("text/html");  
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
+		System.out.println("Parameter:: "+request.getParameter("itemCount11")+request.getAttribute("itemCount11"));
 		List<ShoppingCart> cartList = (ArrayList<ShoppingCart>)session.getAttribute("itemsInCart");
 		for(ShoppingCart cart:cartList){
 			ShoppingCartDao.updateShoppingCart("Y", cart.getTotalItems(), cart.getPriceOfTotalItems(), cart.getModifiedColor(), cart.getCartId());

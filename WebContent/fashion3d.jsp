@@ -6,13 +6,13 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>
-			Le mug
+			Sample Color change Test
 		</title>
 	</head>
 	<body>
 		<p>Example shifting color Hue with .getImageData</p>
 		<p>(Original: left, Recolored: right)</p>
-		<canvas id="canvas" width=1000 height=1000></canvas>
+		<canvas id="canvas" width=500 height=500></canvas>
 		<script type="text/javascript">
 			var canvas = document.getElementById("canvas");
 			var ctx = canvas.getContext("2d");
@@ -20,18 +20,24 @@
 			var img = new Image();
 			img.crossOrigin = "anonymous";
 			img.onload = start;
-			img.src = "images/shirt.png";
-	
-			function start() {
+			img.src = "images/1_big.png";
+			
+			
+			function start(){
 				ctx.drawImage(img, 0, 0);
-				ctx.drawImage(img, 500, 0);
+			}
+			
+			function changeColor(shift) {
+				alert('we are in change color function');
+// 				ctx.drawImage(img, 500, 0);
 				// shift blueish colors to greenish colors
-				recolorPants(.555);
+				recolorPants(shift);
+				return true;
 			}
 	
 			function recolorPants(colorshift) {
 	
-				var imgData = ctx.getImageData(500, 0, canvas.width, canvas.height);
+				var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 				var data = imgData.data;
 	
 				for (var i = 0; i < data.length; i += 4) {
@@ -49,7 +55,7 @@
 					var hue = hsl.h * 360;
 	
 					// change blueish pixels to the new color
-					if (hue > 200 && hue < 300) {
+					if (hue >= 5 && 350<hue < 360) {
 						var newRgb = hslToRgb(hsl.h + colorshift, hsl.s, hsl.l);
 						data[i + 0] = newRgb.r;
 						data[i + 1] = newRgb.g;
@@ -57,7 +63,7 @@
 						data[i + 3] = 255;
 					}
 				}
-				ctx.putImageData(imgData, 500, 0);
+				ctx.putImageData(imgData, 0, 0);
 			}
 	
 	
@@ -127,5 +133,6 @@
 			body{ background-color: ivory; }
 			canvas{border:1px solid red;}
 		</style>
+		<h3>Color - </h3><p># <input type="color" id="picker" name="newColor" onchange="return changeColor(0.555)"></input></p>
 	</body>
 </html> 

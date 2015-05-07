@@ -2,6 +2,8 @@ package com.fashion3d.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 import com.fashion3d.beans.Products;
 
@@ -35,6 +37,19 @@ public class ProductDao {
 				bean.setPrice(rs.getFloat("PRICE"));
 				bean.setImagePath(rs.getString("BIG_IMAGE_PATH"));
 				bean.setTitle(rs.getString("TITLE"));
+				bean.setHues(rs.getString("HUE_RANGE"));
+				HashMap<String, String> newMap = new HashMap<String, String>();
+				if(rs.getString("COLORSHIFT")!=null){
+					String colorShift=rs.getString("COLORSHIFT");
+					if(colorShift!=null){
+						String[] strTok = colorShift.split(",");
+						
+						for(String str:strTok){
+							newMap.put((str.split(":"))[0], (str.split(":"))[1]);
+						}
+					}
+				}
+				bean.setColorListMap(newMap);
 			}
 			
 

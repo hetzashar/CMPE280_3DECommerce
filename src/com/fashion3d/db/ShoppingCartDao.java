@@ -34,11 +34,11 @@ public class ShoppingCartDao {
 			pst.setTimestamp(7, new Timestamp(new Date().getTime()));
 
 			pst.executeUpdate();
-			rs = pst.getGeneratedKeys();
-			if (rs.next()) {
-			    i = rs.getInt(1);
-			}
-			return i;
+			//rs = pst.getGeneratedKeys();
+			//if (rs.next()) {
+			  //  i = rs.getInt(rs.getString("cart_id"));
+			//}
+			return 0;
 		} catch (Exception e) {  
 			System.out.println(e);  
 		} finally {  
@@ -60,9 +60,8 @@ public class ShoppingCartDao {
 				}  
 			}  
 		}  
-		return i;
-	}
-	
+		return -1;
+	}	
 	public static void updateShoppingCart(String completeTransaction, int noOfItems, float totalPrice, String modifiedColor, int cartId) {          
 		PreparedStatement pst = null;  
 		ResultSet rs = null;  

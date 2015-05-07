@@ -126,7 +126,7 @@
 										<h6><strong><%=cart.getProducts().getPrice() %> <span class="text-muted">x</span></strong></h6>
 									</div>
 									<div class="col-xs-2">
-										<input type="text" class="form-control input-sm" placeholder=<%=cart.getTotalItems()%> name="itemCount<%=cart.getCartId()%>" id="itemCount<%=cart.getCartId()%>">
+										<input type="text" class="form-control input-sm" placeholder="<%=cart.getTotalItems()%>" value="<%=cart.getTotalItems()%>" name="itemCount<%=cart.getCartId()%>" id="itemCount<%=cart.getCartId()%>">
 									</div>
 									<div class="col-xs-1">
 										<a href="/CMPE280_3DECommerce/DeleteCartServlet?cartId=<%=cart.getCartId()%>" class="btn btn-link btn-xs">

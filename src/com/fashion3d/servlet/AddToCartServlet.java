@@ -39,6 +39,7 @@ public class AddToCartServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		int productId = Integer.parseInt(request.getParameter("productId"));
 		String modifiedColor = request.getParameter("newColor");
+		System.out.println("ModifiedColor:: "+modifiedColor);
 		String page=request.getParameter("page");
 		HttpSession session= request.getSession();
 		Products prod = ProductDao.getProductBeanFromId(productId);
