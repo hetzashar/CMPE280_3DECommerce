@@ -22,7 +22,6 @@
 <meta name="author" content="CMPE280 Team 03">
 <meta name="alfie content='10 days'">
 <meta name="distribution" content="web">
-<meta http-equiv="refresh" content="30">
 <meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
 <meta name="generator" content="ArchimedesCMS from Artlogic - http://www.artlogic.net/" />
 <meta name="viewport" content="width = 320" />

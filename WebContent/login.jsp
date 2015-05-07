@@ -11,7 +11,6 @@
 <meta name="author" content="CMPE280 Team 03">
 <meta name="alfie content='10 days'">
 <meta name="distribution" content="web">
-<meta http-equiv="refresh" content="30">
 <meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -95,11 +94,7 @@ section#content {
 	</div>
 	<!-- container -->
 	
-		<footer>
-		<div class="row">
-		<p> Copyrights 2015 </p>
-		</div>
-		</footer>
+		
 </body>
 <script type="text/javascript" src="js/script.js"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
