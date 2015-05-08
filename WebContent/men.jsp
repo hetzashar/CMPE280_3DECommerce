@@ -16,6 +16,7 @@
 <meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-translate-customization" content="b6d52dfb0e9e007a-120d726c1560af23-g424449574002f1cd-2a"></meta>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -171,5 +172,11 @@
 		<p style="right:20px;position:absolute;"> Copyrights © 2015 | All right reserved  | <a href="locations.jsp">Search Store</a></p>
 		</div>
 		</footer>
+		
+		<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

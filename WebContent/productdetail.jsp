@@ -26,7 +26,7 @@
 <script src="js/colorPicker.js"></script>
 <link rel="stylesheet" href="css/ekko-lightbox.css">
 <script src="css/ekko-lightbox.min.js"></script>
-
+<meta name="google-translate-customization" content="b6d52dfb0e9e007a-120d726c1560af23-g424449574002f1cd-2a"></meta>
 </head>
 
 <body>
@@ -335,5 +335,10 @@
     $(this).ekkoLightbox();
 });
 	    </script>
+	    <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, multilanguagePage: true}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
