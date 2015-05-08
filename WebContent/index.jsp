@@ -238,7 +238,7 @@ canvas {
 				var geometry = new THREE.BoxGeometry(180,180,180,1,1,1);
 
 				var material= [];
-				for(i=0;i<250;i++){
+				for(i=0;i<160;i++){
 			    var randomNumber = Math.floor(Math.random() * (7 - 1)) + 1;
 			    //var toCall = 'cubeMaterials' + randomNumber;
 			    //console.log(toCall)
@@ -325,7 +325,7 @@ canvas {
 				
 				group = new THREE.Group();
 
-				for ( var i = 0; i < 250; i ++ ) {
+				for ( var i = 0; i < 160; i ++ ) {
 
 					var mesh = new THREE.Mesh( geometry, material[i] );
 					mesh.position.x = Math.random() * 2000 - 1000;
