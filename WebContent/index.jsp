@@ -14,6 +14,7 @@
 <html>
 <head lang="en">
 <title>3D Fashionista</title>
+<link rel="icon" href="images/favicon.ico">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -108,6 +109,8 @@ canvas {
 <body>
 	<nav style="z-index: 500"class="navbar navbar-inverse">
 		<div class="container-fluid">
+		<h1 style="display:none;position:abosulte;color:white"> HELLO TEST</h1>
+		<h2 style="display:none;position:abosulte;color:white"> HELLO TEST</h2>
 			<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 			<span class="icon-bar"></span>
@@ -122,9 +125,9 @@ canvas {
       
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.jsp">Home</a></li>
-				<li class="active"><a href="men.jsp">Male</a></li>
-				<li class="active"><a href="women.jsp">Female</a></li>
-				<li class="active"><a href="#">About Us</a></li>
+				<li class="active"><a href="men.jsp">Men</a></li>
+				<li class="active"><a href="women.jsp">Women</a></li>
+				<li class="active"><a href="aboutUs.jsp">About Us</a></li>
 			</ul>
 				
 			<ul class="nav navbar-nav navbar-right" style="margin-right:40px">
