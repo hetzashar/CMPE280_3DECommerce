@@ -13,7 +13,6 @@
 <meta name="author" content="CMPE280 Team 03">
 <meta name="alfie content='10 days'">
 <meta name="distribution" content="web">
-<meta http-equiv="refresh" content="30">
 <meta name="keywords" content="html fashion,tshirt,jeans,shirt,shoes,3D" />
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +32,7 @@
 <!-- Adding custom style sheets -->
 <style>
 li > a {
-	background-color: #222;
+	background-color: white;
 }
 </style>
 </head>
@@ -63,11 +62,11 @@ li > a {
 						%>
 				<li class="dropdown"><a
 					href="/CMPE280_3DECommerce/logoutServlet" class="dropdown-toggle"
-					data-toggle="dropdown"> Welcome <%=user.getFname()%>! Last
+					data-toggle="dropdown" style="background-color:#222"> Welcome <%=user.getFname()%>! Last
 						logged in: <%=month%>/<%=day%>/<%=year%> <%=hh%>:<%=min%><b
 						class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li style="margin-left: 5px"><a
+					<ul class="dropdown-menu" style="background-color:#222;">
+						<li style="margin-left: 5px"><a 
 							href="/CMPE280_3DECommerce/logoutServlet">Logout</a></li>
 					</ul></li>
 				<%}else{%>
@@ -82,22 +81,22 @@ li > a {
 							itemsInCart=cartList.size();
 						}
 					%>
-				<li class="dropdown"><a href="cartcheckout.jsp"
+				<li class="dropdown"><a style="background-color:#222" href="cartcheckout.jsp"
 					class="dropdown-toggle" data-toggle="dropdown"><span
 						class="glyphicon glyphicon-shopping-cart"></span> <%=itemsInCart%>
 						item(s)<b class="caret"></b></a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu" style="width:200px;overflow:auto;height:300px;">
 						<%if(itemsInCart == 0){ %>
 						<li>No Items found</li>
 						<%}else{
-				            	float totalCost=0f;
+				            	double totalCost=0f;
 				            	for(int i=0; i<itemsInCart; i++){
 				            		ShoppingCart cart = cartList.get(i);
 				            		totalCost=totalCost+cart.getPriceOfTotalItems();
 				            	%>
 						<li><a
 							href="/CMPE280_3DECommerce/productDetail?productId=<%=cart.getProductId()%>">
-								<table style="font-size: 12px;">
+								<table style="font-size: 12px;" overflow="auto">
 									<tr>
 										<td><img alt=""
 											src="<%=cart.getProducts().getTnImagePath() %>" width="50px"
@@ -109,7 +108,9 @@ li > a {
 									</tr>
 								</table>
 						</a></li>
-						<% }
+						<% 
+						totalCost = Math.round(totalCost * 100.0) / 100.0;
+				            	}
 				            	%>
 						<li class="divider"></li>
 						<b><center>
@@ -146,7 +147,7 @@ li > a {
 			<!-- PROD. ITEM -->
 			<div class="col-sm-6 col-md-4 hvr-wobble-vertical">
 				<div class="thumbnail">
-					<img src="<%=product.getTnImagePath() %>">
+					<img src="<%=product.getImagePath() %>" width="285px" height="285px">
 					<div class="caption">
 						<h3 class=""><%=product.getTitle() %></h3>
 						<p class=""><%=product.getProductName() %></p>
