@@ -22,7 +22,7 @@ import java.util.Vector;
     private static String userName = "root";       
       
     // The password used to connect to the database   
-    private static String password = "tiger";       
+    private static String password = "root";       
       
     // The cleanup thread   
     private Thread cleanupThread = null;   

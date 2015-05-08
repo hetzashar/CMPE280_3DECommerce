@@ -133,7 +133,7 @@
 								}
 							
 							<%}%>
-							//alert('we are in change color function'+shift);
+							alert('we are in change color function'+shiftColor+' '+shift);
 							ctx.drawImage(img, 0, 0);
 							recolorPants(shift);
 							return true;
