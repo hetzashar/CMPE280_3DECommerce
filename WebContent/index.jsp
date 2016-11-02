@@ -147,7 +147,7 @@ canvas {
 						 </li>
 					<%}else{%>
 				
-				<li><a href="login.jsp"><span
+				<li><a href="login.jsp"><span	
 						class="glyphicon glyphicon-user"></span> Login</a></li>
 					<%}%>
 				<%
